@@ -1,161 +1,145 @@
 # ConnectionString
 Finding it hard to remember database connection strings?  Everybody does!  Here is an easy-to-use reference of connection strings for numerous databases and data stores.
 
+##Microsoft SQL Server
 
+####ODBC DSN
 
-Microsoft SQL Server
-
-ODBC DSN
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
+using System.Data.Odbc;  
+var conn = new OdbcConnection();  
 conn.ConnectionString = 
               "Dsn=DsnName;" + 
               "Uid=UserName;" + 
-              "Pwd=Secret;"; 
+              "Pwd=Secret;";
 conn.Open();
 
+####ODBC -- Standard Connection
 
-ODBC -- Standard Connection
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
+using System.Data.Odbc;  
+var conn = new OdbcConnection();  
 conn.ConnectionString = 
               "Driver={SQL Server};" + 
               "Server=DataBaseNamex;" + 
               "DataBase=DataBaseName;" + 
               "Uid=UserName;" + 
-              "Pwd=Secret;"; 
+              "Pwd=Secret;";  
 conn.Open();
 
+####ODBC -- Trusted Connection
 
-ODBC -- Trusted Connection
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
+using System.Data.Odbc;  
+var conn = new OdbcConnection();  
 conn.ConnectionString = 
               "Driver={SQL Server};" + 
               "Server=ServerName;" + 
               "DataBase=DataBaseName;" + 
               "Uid=;" + 
-              "Pwd=;"; 
+              "Pwd=;";  
 conn.Open();
-// or
-var conn = new OdbcConnection();
+ *OR*
+var conn = new OdbcConnection();  
 conn.ConnectionString = 
               "Driver={SQL Server};" + 
               "Server=ServerName;" + 
               "DataBase=DataBaseName;" + 
-              "Trusted_Connection=Yes;"; 
+              "Trusted_Connection=Yes;";  
 conn.Open();
 
+####OleDb -- Standard Connection
 
-OleDb -- Standard Connection
-
-using System.Data.OleDb;
-var conn = new OleDbConnection();
+using System.Data.OleDb;  
+var conn = new OleDbConnection();  
 conn.ConnectionString = 
               "Driver=SQLOLEDB;" + 
               "Data Source=ServerName;" + 
               "Initial Catalog=DataBaseName;" + 
               "User id=UserName;" + 
-              "Password=Secret;"; 
+              "Password=Secret;";  
 conn.Open();
 
+####OleDb -- Trusted Connection
 
-OleDb -- Trusted Connection
-
-using System.Data.OleDb;
-var conn = new OleDbConnection();
+using System.Data.OleDb;  
+var conn = new OleDbConnection();  
 conn.ConnectionString = 
               "Driver=SQLOLEDB;" + 
               "Data Source=ServerName;" + 
               "Initial Catalog=DataBaseName;" + 
-              "Integrated Security=SSPI;"; 
+              "Integrated Security=SSPI;";  
 conn.Open();
 
+####OleDb -- via IP Address
 
-OleDb -- via IP Address
-
-using System.Data.OleDb;
-var conn = new OleDbConnection();
+using System.Data.OleDb;  
+var conn = new OleDbConnection();  
 conn.ConnectionString = 
               "Driver=SQLOLEDB;" + 
               "Network Library=DBMSSOCN;" + 
               "Data Source=xxx.xxx.xxx.xxx,1433;" + 
               "Initial Catalog=DataBaseName;" + 
               "User id=UserName;" + 
-              "Password=Secret;"; 
+              "Password=Secret;";  
 conn.Open();
 
+####.NET DataProvider -- Standard Connection
 
-.NET DataProvider -- Standard Connection
-
-using System.Data.SqlClient;
-var conn = new SqlDbConnection();
+using System.Data.SqlClient;  
+var conn = new SqlDbConnection();  
 conn.ConnectionString = 
               "Data Source=ServerName;" + 
               "Initial Catalog=DataBaseName;" + 
               "User id=UserName;" + 
-              "Password=Secret;"; 
+              "Password=Secret;";  
 conn.Open();
 
+####.NET DataProvider -- Trusted Connection
 
-.NET DataProvider -- Trusted Connection
-
-using System.Data.SqlClient;
-var conn = new SqlConnection();
+using System.Data.SqlClient;  
+var conn = new SqlConnection();  
 conn.ConnectionString = 
               "Data Source=ServerName;" + 
               "Initial Catalog=DataBaseName;" + 
-              "Integrated Security=SSPI;"; 
+              "Integrated Security=SSPI;";  
 conn.Open();
 
+####.NET DataProvider -- via IP Address
 
-.NET DataProvider -- via IP Address
-
-using System.Data.SqlClient;
-var conn = new SqlConnection();
+using System.Data.SqlClient;  
+var conn = new SqlConnection();  
 conn.ConnectionString = 
               "Network Library=DBMSSOCN;" + 
               "Data Source=xxx.xxx.xxx.xxx,1433;" + 
               "Initial Catalog=DataBaseName;" + 
               "User Id=UserName;" + 
-              "Password=Secret;"; 
+              "Password=Secret;";   
 conn.Open();
 
+##Microsoft Sql Express
 
+####.NET Data Provider -- Default Relative Path -- Standard Connection
 
-
-Microsoft Sql Express
-
-
-.NET Data Provider -- Default Relative Path -- Standard Connection
-
-using System.Data.SqlClient;
-var conn = new SqlConnection();
+using System.Data.SqlClient;  
+var conn = new SqlConnection();  
 conn.ConnectionString = 
      "Data Source=.\SQLExpress;" + 
      "User Instance=true;" + 
      "User Id=UserName;" + 
      "Password=Secret;" + 
-     "AttachDbFilename=|DataDirectory|DataBaseName.mdf;"
+     "AttachDbFilename=|DataDirectory|DataBaseName.mdf;"  
 conn.Open();
 
+####.NET Data Provider -- Default Relative Path -- Trusted Connection
 
-.NET Data Provider -- Default Relative Path -- Trusted Connection
-
-using System.Data.SqlClient;
-var conn = new SqlConnection();
+using System.Data.SqlClient;  
+var conn = new SqlConnection();  
 conn.ConnectionString = 
      "Data Source=.\SQLExpress;" + 
      "User Instance=true;" + 
      "Integrated Security=true;" + 
      "AttachDbFilename=|DataDirectory|DataBaseName.mdf;"
-conn.Open();
+conn.Open();  
 
-
-.NET Data Provider -- Custom Relative Path -- Standard Connection
+####.NET Data Provider -- Custom Relative Path -- Standard Connection
 
 using System.Data.SqlClient;
 AppDomain.CurrentDomain.SetData(
@@ -169,8 +153,7 @@ conn.ConnectionString =
      "AttachDbFilename=|DataDirectory|DataBaseName.mdf;"
 conn.Open();
 
-
-.NET Data Provider -- Custom Relative Path -- Trusted Connection
+####.NET Data Provider -- Custom Relative Path -- Trusted Connection
 
 using System.Data.SqlClient;
 AppDomain.CurrentDomain.SetData(
@@ -183,8 +166,7 @@ conn.ConnectionString =
      "AttachDbFilename=|DataDirectory|DataBaseName.mdf;"
 conn.Open();
 
-
-.NET Data Provider -- Absolute Path -- Standard Connection
+####.NET Data Provider -- Absolute Path -- Standard Connection
 
 using System.Data.SqlClient;
 var conn = new SqlConnection();
@@ -196,8 +178,7 @@ conn.ConnectionString =
      "AttachDbFilename=C:\MyPath\DataBaseName.mdf;"
 conn.Open();
 
-
-.NET Data Provider -- Absolute Path -- Trusted Connection
+####.NET Data Provider -- Absolute Path -- Trusted Connection
 
 using System.Data.SqlClient;
 var conn = new SqlConnection();
@@ -208,21 +189,16 @@ conn.ConnectionString =
      "AttachDbFilename=C:\MyPath\DataBaseName.mdf;"
 conn.Open();
 
+##Microsoft Access
 
-
-
-Microsoft Access
-
-
-ODBC DSN
+####ODBC DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
 conn.ConnectionString = "Dsn=DsnName";
 conn.Open();
 
-
-ODBC -- Standard Security
+####ODBC -- Standard Security
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -232,8 +208,7 @@ conn.ConnectionString =
     "Uid=Admin;Pwd=;"; 
 conn.Open();
 
-
-ODBC -- Workgroup (System Database)
+####ODBC -- Workgroup (System Database)
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -243,8 +218,7 @@ conn.ConnectionString =
     "SystemDb=c:\myPath\myDb.mdw;"; 
 conn.Open();
 
-
-ODBC -- Exclusive Use
+####ODBC -- Exclusive Use
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -255,8 +229,7 @@ conn.ConnectionString =
      "Uid=Admin;Pwd=;"; 
 conn.Open();
 
-
-OleDb with MS Jet -- Standard Security
+####OleDb with MS Jet -- Standard Security
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -267,8 +240,7 @@ conn.ConnectionString =
            "Password=";
 conn.Open();
 
-
-OleDb with MS Jet -- Workgroup (System Database)
+####OleDb with MS Jet -- Workgroup (System Database)
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -278,8 +250,7 @@ conn.ConnectionString =
            "System Database=c:\mypath\myDb.mdw;"; 
 conn.Open();
 
-
-OleDb with MS Jet -- With Password
+####OleDb with MS Jet -- With Password
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -289,13 +260,9 @@ conn.ConnectionString =
            "Database Password=Secret;"
 conn.Open();
 
+##Oracle
 
-
-
-Oracle
-
-
-ODBC DSN
+####ODBC DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -305,8 +272,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- New Microsoft Driver
+####ODBC -- New Microsoft Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -317,8 +283,7 @@ conn.ConnectionString =
            "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- Old Microsoft Driver
+####ODBC -- Old Microsoft Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -329,8 +294,7 @@ conn.ConnectionString =
     "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- Oracle Driver
+####ODBC -- Oracle Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -341,8 +305,7 @@ conn.ConnectionString =
     "Pwd=Secret;"; 
 conn.Open();
 
-
-OleDb -- Microsoft Driver
+####OleDb -- Microsoft Driver
 
 uusing System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -353,8 +316,7 @@ conn.ConnectionString =
               "Password=Secret;"; 
 conn.Open();
 
-
-OleDb -- Oracle Driver -- Standard Connection
+####OleDb -- Oracle Driver -- Standard Connection
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -365,8 +327,7 @@ conn.ConnectionString =
               "Password=Secret;"; 
 conn.Open();
 
-
-OleDb -- Oracle Driver -- Trusted Connection
+####OleDb -- Oracle Driver -- Trusted Connection
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -375,7 +336,7 @@ conn.ConnectionString =
               "Data Source=ServerName;" + 
               "OSAuthent=1;";
 conn.Open();
-// or 
+*OR* 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
 conn.ConnectionString = 
@@ -385,8 +346,7 @@ conn.ConnectionString =
               "Password=;"; 
 conn.Open();
 
-
-.NET DataProvider from Microsoft -- Standard Connection
+####.NET DataProvider from Microsoft -- Standard Connection
 
 using System.Data.OracleClient;
 var conn = new OracleConnection();
@@ -396,8 +356,7 @@ conn.ConnectionString =
               "Password=Secret;"; 
 conn.Open();
 
-
-.NET DataProvider from Microsoft -- Trusted Connection
+####.NET DataProvider from Microsoft -- Trusted Connection
 
 using System.Data.OracleClient;
 var conn = new OracleConnection();
@@ -406,8 +365,7 @@ conn.ConnectionString =
               "Integrated Security=Yes;"; 
 conn.Open();
 
-
-.NET DataProvider from Oracle -- Standard Connection
+####.NET DataProvider from Oracle -- Standard Connection
 
 using Oracle.DataAccess.Client;
 var conn = new OracleConnection();
@@ -417,8 +375,7 @@ conn.ConnectionString =
               "Password=Secret;"; 
 conn.Open();
 
-
-.NET DataProvider from Oracle -- Trusted Connection
+####.NET DataProvider from Oracle -- Trusted Connection
 
 using Oracle.DataAccess.Client;
 var conn = new OracleConnection();
@@ -427,13 +384,9 @@ conn.ConnectionString =
               "Integrated Security=Yes;"; 
 conn.Open();
 
+##IBM DB2
 
-
-
-IBM DB2
-
-
-ODBC DSN
+####ODBC DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -443,8 +396,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC without DSN
+####ODBC without DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -458,8 +410,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-OleDb -- Microsoft Driver
+####OleDb -- Microsoft Driver
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -473,8 +424,7 @@ conn.ConnectionString =
            "Password=Secret;"; 
 conn.Open();
 
-
-OleDb -- IBM Driver
+####OleDb -- IBM Driver
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -488,8 +438,7 @@ conn.ConnectionString =
             "Pwd=Secret;"; 
 conn.Open();
 
-
-.NET DataProvider from IBM
+####.NET DataProvider from IBM
 
 using IBM.Data.DB2;
 var conn = new Db2Connection();
@@ -499,13 +448,9 @@ conn.ConnectionString =
               "Pwd=Secret;" + 
 conn.Open();
 
+##MySql
 
-
-
-MySql
-
-
-ODBC DSN
+####ODBC DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -515,8 +460,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- MyODBC Driver -- local database
+####ODBC -- MyODBC Driver -- local database
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -527,8 +471,7 @@ conn.ConnectionString =
             "DataBase=DataBaseName;" 
 conn.Open();
 
-
-ODBC -- MyODBC Driver -- remote database
+####ODBC -- MyODBC Driver -- remote database
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -543,8 +486,7 @@ conn.ConnectionString =
             "Pwd=Secret;" 
 conn.Open();
 
-
-ODBC -- MySQL ODBC 3.51 Driver
+####ODBC -- MySQL ODBC 3.51 Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -558,7 +500,7 @@ conn.ConnectionString =
      "Uid=UserName;" + 
      "Pwd=Secret;" 
 conn.Open();
-// or 
+*OR*
 var conn = new OdbcConnection();
 conn.ConnectionString = 
      "DRIVER={MySql ODBC 3.51 Driver};" + 
@@ -568,8 +510,7 @@ conn.ConnectionString =
      "PASSWORD=Secret;" 
 conn.Open();
 
-
-OleDb
+####OleDb
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -580,8 +521,7 @@ conn.ConnectionString =
             "Password=Secret;" 
 conn.Open();
 
-
-.NET DataProvider from CoreLab
+####.NET DataProvider from CoreLab
 
 using CoreLab.MySql;
 var conn = new MySqlConnection();
@@ -600,13 +540,9 @@ conn.ConnectionString =
               "Password=Secret;" + 
 conn.Open();
 
+##Sybase
 
-
-
-Sybase
-
-
-ODBC DSN
+####ODBC DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -616,8 +552,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- Sybase System 12 (12.5) ODBC Driver
+####ODBC -- Sybase System 12 (12.5) ODBC Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -628,8 +563,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- Sybase System 11 ODBC Driver
+####ODBC -- Sybase System 11 ODBC Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -640,8 +574,7 @@ conn.ConnectionString =
            "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- Intersolv 3.10 ODBC Driver
+####ODBC -- Intersolv 3.10 ODBC Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -652,8 +585,7 @@ conn.ConnectionString =
         "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- SQL Anywhere
+####ODBC -- SQL Anywhere
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -667,8 +599,7 @@ conn.ConnectionString =
          "Dsn="""";";     // Must be included!
 conn.Open();
 
-
-OleDb -- Sybase Adaptive Server Enterprise (ASE)
+####OleDb -- Sybase Adaptive Server Enterprise (ASE)
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -683,8 +614,7 @@ conn.Open();
 // 'Server Name' with 'Srvr', and 
 // 'Initial Catalog' with 'Catalog'
 
-
-.NET DataProvider from Sybase
+####.NET DataProvider from Sybase
 
 using Sybase.Data.AseClient;
 var conn = new AseConnection();
@@ -695,13 +625,9 @@ conn.ConnectionString =
               "Password=Secret;"; 
 conn.Open();
 
+##Interbase
 
-
-
-Interbase
-
-
-ODBC DSN
+####ODBC DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -711,8 +637,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- EasySoft ODBC Driver -- local machine
+####ODBC -- EasySoft ODBC Driver -- local machine
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -724,8 +649,7 @@ conn.ConnectionString =
       "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- EasySoft ODBC Driver -- remote machine
+####ODBC -- EasySoft ODBC Driver -- remote machine
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -737,8 +661,7 @@ conn.ConnectionString =
       "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- Intersolv ODBC Driver -- local machine
+####ODBC -- Intersolv ODBC Driver -- local machine
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -751,8 +674,7 @@ conn.ConnectionString =
       "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC -- Intersolv ODBC Driver -- remote machine
+####ODBC -- Intersolv ODBC Driver -- remote machine
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -765,13 +687,9 @@ conn.ConnectionString =
       "Pwd=Secret;"; 
 conn.Open();
 
+##Informix
 
-
-
-Informix
-
-
-ODBC DSN -- INFORMIX 3.30 ODBC Driver
+####ODBC DSN -- INFORMIX 3.30 ODBC Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -786,8 +704,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC without DSN -- INFORMIX 3.30 ODBC Driver
+####ODBC without DSN -- INFORMIX 3.30 ODBC Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -803,8 +720,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC Informix-CLI 2.5 ODBC Driver
+####ODBC Informix-CLI 2.5 ODBC Driver
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -816,8 +732,7 @@ conn.ConnectionString =
           "Pwd=Secret;"; 
 conn.Open();
 
-
-OleDb -- IBM Informix OleDb Provider
+####OleDb -- IBM Informix OleDb Provider
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -829,13 +744,9 @@ conn.ConnectionString =
         "Persist Security Info=true;"; 
 conn.Open();
 
+##Excel
 
-
-
-Excel
-
-
-ODBC DSN
+####ODBC DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -845,8 +756,7 @@ conn.ConnectionString =
               "Pwd=Secret;"; 
 conn.Open();
 
-
-ODBC without DSN
+####ODBC without DSN
 
 using System.Data.Odbc;
 var conn = new OdbcConnection();
@@ -857,8 +767,7 @@ conn.ConnectionString =
        "DefaultDir=C:\MyPath;"; 
 conn.Open();
 
-
-OleDb with MS Jet
+####OleDb with MS Jet
 
 using System.Data.OleDb;
 var conn = new OleDbConnection();
@@ -866,133 +775,4 @@ conn.ConnectionString =
     "Driver=Microsoft.Jet.OLEDB.4.0;" + 
     "Data Source=C:\MyPath\SpreadSheet.xls;" + 
    @"Extended Properties=""Excel 8.0;HDR=Yes"""; 
-conn.Open();
-<
-
-
-
-
-Text
-
-
-ODBC DSN
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
-conn.ConnectionString = 
-              "Dsn=DsnName;" + 
-              "Uid=UserName;" + 
-              "Pwd=Secret;"; 
-conn.Open();
-
-
-ODBC without DSN
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
-conn.ConnectionString = 
- "Driver={Microsoft Text Driver (*.txt; *.csv)};" + 
- "Dbq=C:\MyPath\;" + 
- "Extensions=asc,csv,tab,txt;"; 
-conn.Open();
-// Use: sql = "Select * From MyTextFile.txt"
-
-
-OleDb with MS Jet
-
-using System.Data.OleDb;
-var conn = new OleDbConnection();
-conn.ConnectionString = 
-      "Driver=Microsoft.Jet.OLEDB.4.0;" + 
-      "Data Source=C:\MyPath\;" + 
-      "Extended Properties=" + 
-        @"""text;HDR=Yes;FMT=Delimited"""; 
-conn.Open();
-// Use: sql = "Select * From MyTextFile.txt"
-
-
-
-
-dBase Dbf
-
-
-ODBC DSN
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
-conn.ConnectionString = "Dsn=DsnName";
-conn.Open();
-// Use: sql = "Select * From MyDb.dbf"
-
-
-ODBC without DSN
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
-conn.ConnectionString = 
-     "Driver={Microsoft dBASE Driver (*.dbf)};" + 
-     "Driverid=277;" + 
-     "Dbq=C:\MyPath\";
-conn.Open();
-// Use: sql = "Select * From MyDb.dbf"
-
-
-
-
-Visual FoxPro
-
-
-ODBC DSN
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
-conn.ConnectionString = "Dsn=DsnName";
-conn.Open();
-
-
-ODBC without DSN -- Database container (dbc)
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
-conn.ConnectionString = 
-      "Driver={Microsoft Visual FoxPro Driver};" + 
-      "SourceType=DBC;" + 
-      "SourceDB=C:\MyPath\MyDb.dbc;" + 
-      "Exclusive=No"; 
-conn.Open();
-
-
-ODBC without DSN -- Free table directory
-
-using System.Data.Odbc;
-var conn = new OdbcConnection();
-conn.ConnectionString = 
-      "Driver={Microsoft Visual FoxPro Driver};" + 
-      "SourceType=DBF;" + 
-      "SourceDB=C:\MyPath;" + 
-      "Exclusive=No"; 
-conn.Open();
-
-
-OleDb -- Database container (dbc)
-
-using System.Data.OleDb;
-var conn = new OleDbConnection();
-conn.ConnectionString = 
-              "Driver=VFPOLEDB;" + 
-              "Data Source=C:\MyPath\MyDb.dbc;" + 
-              "Collating Sequence=machine;" + 
-              "Password=Secret;"; 
-conn.Open();
-
-
-OleDb -- Free table directory
-
-using System.Data.OleDb;
-var conn = new OleDbConnection();
-conn.ConnectionString = 
-              "Driver=VFPOLEDB;" + 
-              "Data Source=C:\MyPath\;" + 
-              "Collating Sequence=general;" + 
-              "Password=Secret;"; 
 conn.Open();
